@@ -51,20 +51,30 @@ public class Game
         
         
         // initialise room exits
-        cellar.setExits(lab, null, garrison, null);
-        garrison.setExits(cellar, courtyard, null, null);
-        lab.setExits(null, null, cellar, dungeon);
-        dungeon.setExits(null, lab, null, null);
-        courtyard.setExits(mainHall, null, quarters, garrison);
-        quarters.setExits(courtyard, null, null, null);
-        mainHall.setExits(kitchen, forest, courtyard, throneRoom);
-        kitchen.setExits(null, null, mainHall, null);
-        treasury.setExits(throneRoom, null, null, null);
-        throneRoom.setExits(null, mainHall, treasury, null);
-        forest.setExits(null, null, null, mainHall);
+        cellar.setExit("north", lab);
+        cellar.setExit("south", garrison);
+        garrison.setExit("north", cellar);
+        garrison.setExit("east", cellar);
+        lab.setExit("south", cellar);
+        lab.setExit("west", dungeon);
+        dungeon.setExit("east", lab);
+        courtyard.setExit("north", mainHall);
+        courtyard.setExit("south", quarters);
+        courtyard.setExit("west", garrison);
+        quarters.setExit("north", courtyard);
+        mainHall.setExit("north", kitchen);
+        mainHall.setExit("east", forest);
+        mainHall.setExit("south", courtyard);
+        mainHall.setExit("west", throneRoom);
+        kitchen.setExit("south", mainHall);
+        treasury.setExit("north", throneRoom);
+        treasury.setExit("down", cellar);
+        throneRoom.setExit("east", mainHall);
+        throneRoom.setExit("south", treasury);
+        forest.setExit("west", mainHall);
         
         
-        currentRoom = cellar;  // start game outside
+        currentRoom = cellar;  // start game in cellar
     }
 
     /**
